@@ -32,31 +32,29 @@
 	
 	<div class="appointment-w3">
 
-		<form action="#" method="post">
+		<form action="#" method="post" onsubmit="return false;">
 			<h2 class="sub-heading-wthree"> User Login</h2>
 			<div class="main">
 				<div class="form-left-w3l">
-					<input type="email" name="email" placeholder="Email" required="">
+					<input type="email" id="email" placeholder="Email" required="">
 				</div>
 				<div class="form-right-w3ls ">
-
-					<input type="password" name="password" placeholder="Password" required="">
-
-					<div class="clearfix"></div>
+					<input type="password" id="password" placeholder="Password" required="">
 				</div>
-
-			</div>
-			<div class="btnn">
-				<button type="submit">Login</button><br>
-				<div class="left-side w3l">
-					<!-- <input type="checkbox" class="checked"> -->
-					<a href="signup.html" class="for">Create account</a>
-
+				<div  class="hint invisible" id="empty-fields">
+					Please enter your email and password.
 				</div>
-				<a href="#" class="for">Forgot password</a>
-				<div class="clear"></div>
+				<div  class="hint invisible" id="invalid">
+					The entered email and/or password is incorrect.
+				</div>
+				<div class="btnn">
+					<button type="submit" onclick="userLogin()">Login</button><br>
+					<div>
+						<a href="signup.html" class="for float-lt">Create account</a>
+						<a href="#" class="for float-rt">Forgot password</a>
+					</div>
+				</div>
 			</div>
-
 
 			<!-- <div class="header-social wthree"> -->
 				<!-- <div class="line-mid"> -->
@@ -68,7 +66,6 @@
 				<!-- </ul> -->
 			<!-- </div> -->
 
-
 		</form>
 	</div>
 
@@ -78,7 +75,8 @@
 	
 	<script type="text/javascript" src="../AWS_cognito_sdk.min.js"></script>
 	<script type="text/javascript" src="../AWS_cognito_id_sdk.min.js"></script>
-	<script type="text/javascript" src="signup.js"></script>
+	<script type="text/javascript" src="login.js"></script>
+	<script type="text/javascript" src="cognitoHandler.js"></script>
 
 </body>
 

@@ -1,12 +1,5 @@
 
-AWSCognito.config.region = 'us-east-2';
-        
-var poolData = { 
-	UserPoolId : 'us-east-2_ShLJ6Qd0I',
-	ClientId : '5ffhmh1dnnptnnk089ks8v25mk'
-};
-var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-var cognitoUser;
+
 var hintText = document.getElementById('hint-text');
 
 function submitAcct(){
@@ -39,39 +32,17 @@ function submitAcct(){
 		console.log("submitting new user info..");
 		
 		//generate a new user in AWS
-		var attributeList = [];
-		var dataEmail = {
-			Name : 'email',
-			Value : email
-		};
-		var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
-		attributeList.push(attributeEmail);
-
-		userPool.signUp(email, pswd, attributeList, null, function(err, result) {
+		signUpUser(email,pswd,function(err,result){
 			if (err) {
-				console.log(err);
 				hintText.style.display = 'block';
 				hintText.innerHTML = "There was an error.";
-				return;
+			}else{
+				cognitoUser = result.user;
+				localStorage.setItem('confirm-email',cognitoUser.email);
+				window.location.href("verifyEmail.html");
 			}
-			console.log(result);
-			cognitoUser = result.user;
-			
-			localStorage.setItem('user',JSON.stringify(cognitoUser));
-			window.location.href("verifyEmail.html");
 		});
 	}
 }
-
-function showSecondForm(){
-	document.getElementById('email-password').style.display = 'none';
-	document.getElementById('extra-info').style.display = 'block';
-}
-
-function showFirstForm(){
-	document.getElementById('email-password').style.display = 'block';
-	document.getElementById('extra-info').style.display = 'none';
-}
-
 
 	

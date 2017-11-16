@@ -35,28 +35,25 @@
 
 		<form action="#" method="post" onsubmit="return false">
 			<h2 class="sub-heading-wthree">New Account</h2>
-			<div class="main" id="email-password">
-				<div class="form-left-w3l">
-					<input type="email" id="email" placeholder="Email" required="">
-				</div>
-				<div class="form-right-w3ls">
-					<input type="password" id="password" placeholder="New password" required="">
-				</div>
-				<div class="form-right-w3ls">
-					<input type="password" id="confirm-password" placeholder="Confirm password" required="">
+			<div class="main" id="first-form">
+				<div  class="hint" id="email-sent">
+					A verification code was sent<span id="insert-email"></span>, please enter it below
 				</div>
 				
-				<div  class="hint" id="pass-reqs" style="display:none;">
-					Password must be at least 8 characters, contain upper and lower case letters, numbers, and symbols (^*@_[]{}()!?).
+				<div class="form-left-w3l">
+					<input type="text" name="code" id="code" placeholder="Verification code" required="">
 				</div>
-				<div class="hint" id="conf-not-matching" style="display:none;">
-					The passwords do not match.
+				<div  class="hint invisible" id="wrong-code">
+					The code was incorrect.
+				</div>
+				<div  class="hint invisible" id="resend-code">
+					The verification email was re-sent.
 				</div>
 			
 				<div class="btnn">
-					<button type="submit" onClick="submitAcct()">Continue</button><br>
+					<button type="submit" onClick="verifyCode()">Verify</button><br>
 					<div >
-						<a href="login.html" class="for">Login with existing account</a>
+						<a href="#" class="for" onclick="resendEmail()">Resend email</a>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -77,18 +74,9 @@
 					<input type="password" id="confirm-password" placeholder="Confirm password" required="">
 				</div>
 				
-				<div  class="hint" id="pass-reqs" style="display:none;">
-					Password must be at least 8 characters, contain upper and lower case letters, numbers, and symbols (^*@_[]{}()!?).
-				</div>
-				<div class="hint" id="conf-not-matching" style="display:none;">
-					The passwords do not match.
-				</div>
-			
 				<div class="btnn">
 					<button type="submit" onClick="submitAcct()">Continue</button><br>
-					<div >
-						<a href="#" class="for" onclick="showFirstForm()">Back</a>
-					</div>
+					
 					<div class="clear"></div>
 				</div>
 			</div>
@@ -113,7 +101,8 @@
 	
 	<script type="text/javascript" src="../AWS_cognito_sdk.min.js"></script>
 	<script type="text/javascript" src="../AWS_cognito_id_sdk.min.js"></script>
-	<script type="text/javascript" src="signup.js"></script>
+	<script type="text/javascript" src="cognitoHandler.js"></script>
+	<script type="text/javascript" src="verifyEmail.js"></script>
 
 </body>
 

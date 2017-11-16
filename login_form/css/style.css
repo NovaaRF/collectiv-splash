@@ -138,6 +138,10 @@ table {
 
 /* start editing from here */
 
+.invisible {
+	display:none;
+}
+
 a {
     text-decoration: none;
 }
