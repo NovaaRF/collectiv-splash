@@ -349,9 +349,10 @@ h2.sub-heading-wthree {
     padding-bottom: 10px;
 }
 
-.form-right-w3ls input[type="password"],
-.form-left-w3l input[type="email"],
-.form-left-w3l input[type="text"] {
+.auth-form input[type="password"],
+.auth-form input[type="email"],
+.auth-form input[type="text"],
+.auth-form select {
     width: 100%;
     color: #000;
     outline: none;
@@ -370,9 +371,11 @@ h2.sub-heading-wthree {
 	margin-bottom: 1em;
 }
 
-.form-right-w3ls input[type="password"] {
-    
+.auth-form select {
+	background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right rgb(255, 255, 255);
+	background-position-x: 95%;
 }
+
 
 .main {
     display: -webkit-flex;
@@ -562,7 +565,8 @@ span.fa {
         width: 30%;
         margin: 42px auto 53px;
     }
-    .form-left-w3l input[type="email"] {
+    .auth-form input[type="email"],
+	.auth-form select	{
         margin: 0px 0px 19px;
     }
     .header-social ul li a {
@@ -584,7 +588,7 @@ span.fa {
         margin: 30px auto 27px;
         width: 25%;
     }
-     .form-left-w3l input[type="email"] { 
+     .auth-form input[type="email"] { 
          margin: 0px 0px 16px; 
      } 
     .header-social ul li a {
@@ -643,8 +647,7 @@ span.fa {
     .header-social ul li a {
         font-size: 15px;
     }
-    .form-right-w3ls input[type="password"],
-    .form-left-w3l input[type="email"] {
+    .auth-form input {
         font-size: 15px;
     }
     button[type=submit] {
@@ -686,7 +689,7 @@ span.fa {
         font-size: 36px;
         margin-bottom: 39px;
     }
-    .form-left-w3l input[type="email"] {
+    .auth-form input[type="email"] {
         margin: 0px 0px 26px;
     }
     .btnn {
@@ -725,7 +728,7 @@ span.fa {
     .copy p {
         letter-spacing: 1px;
     }
-    .form-left-w3l input[type="email"] {
+    .auth-form input[type="email"] {
         margin: 0px 0px 15px;
     }
 }
@@ -790,8 +793,9 @@ span.fa {
     h2.sub-heading-wthree {
         font-size: 30px;
     }
-    .form-right-w3ls input[type="password"],
-    .form-left-w3l input[type="email"] {
+    .auth-form input[type="password"],
+    .auth-form input[type="email"],
+.auth-form select	{
         padding: 0.6em 1em;
     }
     .header-social ul li a {
@@ -834,8 +838,9 @@ span.fa {
         padding: 27px 24px;
         width: 78%;
     }
-    .form-right-w3ls input[type="password"],
-    .form-left-w3l input[type="email"] {
+    .auth-form input[type="password"],
+    .auth-form input[type="email"],
+	.auth-form select	{
         font-size: 14px;
     }
     .copy p {

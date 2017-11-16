@@ -5,7 +5,7 @@ var poolData = {
 	ClientId : '5ffhmh1dnnptnnk089ks8v25mk'
 };
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-var cognitoUser;
+var cognitoUser = JSON.parse(localStorage.getItem('activeUser'));
 
 function buildCognitoUser(email){
 	var userData = {
@@ -54,6 +54,9 @@ function authenticateUser(email,pswd,callback){
 		cognitoUser.authenticateUser(authenticationDetails, {
 			onSuccess: function (result) {
 				console.log(result);
+				if(callback){
+					callback(null,result);
+				}
 			},
 			onFailure: function(err) {
 				console.log(err);
@@ -63,4 +66,28 @@ function authenticateUser(email,pswd,callback){
 			},
 		});
 }
+
+function updateUserProfile(attributes,callback){
+	var attributeList = [];
+	for(var i=0;i<attributes.length;i++){
+		var attribute = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attributes[i]);
+		attributeList.push(attribute);
+	}
+	cognitoUser.updateAttributes(attributeList, function(err, result) {
+        if (err) {
+            console.log(err);
+			if(callback){
+				callback(err,result);
+			}
+        }else{
+			console.log('call result: ' + result);
+			if(callback){
+				callback(err,result);
+			}
+		}
+    });
+}
+
+
+
 

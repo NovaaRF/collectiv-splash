@@ -7,17 +7,6 @@
 	<!-- Meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-	<!-- <script type="application/x-javascript"> -->
-		<!-- addEventListener("load", function () { -->
-			<!-- setTimeout(hideURLbar, 0); -->
-		<!-- }, false); -->
-
-		<!-- function hideURLbar() { -->
-			<!-- window.scrollTo(0, 1); -->
-		<!-- } -->
-	<!-- </script> -->
-	<!-- Meta tags -->
 	<!-- font-awesome icons -->
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<!-- //font-awesome icons -->
@@ -33,15 +22,16 @@
 	
 	<div class="appointment-w3">
 
-		<form action="#" method="post" onsubmit="return false">
+		<form action="#" method="post" onsubmit="return false" novalidate>
 			<h2 class="sub-heading-wthree">New Account</h2>
 			<div class="main" id="first-form">
 				<div  class="hint" id="email-sent">
+					You must verify your email before logging in.<br><br>
 					A verification code was sent<span id="insert-email"></span>, please enter it below
 				</div>
 				
-				<div class="form-left-w3l">
-					<input type="text" name="code" id="code" placeholder="Verification code" required="">
+				<div class="auth-form">
+					<input type="text" name="code" id="code" placeholder="Verification code" maxlength="20">
 				</div>
 				<div  class="hint invisible" id="wrong-code">
 					The code was incorrect.
@@ -58,39 +48,55 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-			
-			
-			<div class="main" id="extra-info" style="display:none;">
-			<div class="hint">
-					Just need a little more information...
+		</form>
+		<form action="#" method="post" onsubmit="return false" novalidate>
+			<div class="main" id="second-form" style="display:none;">
+				<div class="hint">
+					Select a display name your supporters will see
 				</div>
-				<div class="form-left-w3l">
+				<div class="auth-form">
 					<input type="text" id="username" placeholder="Display name" required="">
 				</div>
-				<div class="form-right-w3ls">
-					<input type="password" id="password" placeholder="New password" required="">
+				<div class="hint">
+					Which category best describes your platform/content?
 				</div>
-				<div class="form-right-w3ls">
-					<input type="password" id="confirm-password" placeholder="Confirm password" required="">
+				<div class="auth-form">
+					<select id="user-type" onchange="checkOther(this)">
+						<option value="youtube">Youtube channel</option>
+						<option value="blog">Blog</option>
+						<option value="podcast">Podcast</option>
+						<option value="non-profit">Non-profit</option>
+						<option value="other">Other</option>
+					</select>
+				</div>
+				<div class="auth-form invisible" id="user-type-other-text">
+					<input type="text" id="user-type-input" placeholder="Please describe" maxlength="50">
+				</div>
+				<div class="hint">
+					And finally, how did you hear about us?
+				</div>
+				<div class="auth-form">
+					<select id="referral" onchange="checkOther(this)">
+						<option value="other-channel">Saw it on another blog/channel</option>
+						<option value="word-of-mouth">Word of mouth</option>
+						<option value="news">Read an article</option>
+						<option value="direct">You contacted me</option>
+						<option value="other">Other</option>
+					</select>
+				</div>
+				<div class="auth-form invisible" id="referral-other-text">
+					<input type="text" id="referral-input" placeholder="Please describe" maxlength="50">
+				</div>
+				<div class="hint invisible" id="not-complete-hint">
+					Please fill out all the prompts.
 				</div>
 				
 				<div class="btnn">
-					<button type="submit" onClick="submitAcct()">Continue</button><br>
+					<button type="submit" onClick="submitOtherInfo()">Continue</button><br>
 					
 					<div class="clear"></div>
 				</div>
 			</div>
-
-			<!-- <div class="header-social wthree"> -->
-				<!-- <div class="line-mid"> -->
-					<!-- <h4>or</h4> -->
-				<!-- </div> -->
-				<!-- <ul> -->
-					<!-- <li><a href="#" class="f"><span class="fa fa-facebook" aria-hidden="true"></span>Login with Facebook</a></li> -->
-					<!-- <li><a href="#" class="g"><span class="fa fa-google-plus" aria-hidden="true"></span>Login with Google+</a></li> -->
-				<!-- </ul> -->
-			<!-- </div> -->
-
 
 		</form>
 	</div>

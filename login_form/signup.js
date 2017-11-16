@@ -1,5 +1,5 @@
 
-
+var error;
 var hintText = document.getElementById('hint-text');
 
 function submitAcct(){
@@ -33,7 +33,11 @@ function submitAcct(){
 		
 		//generate a new user in AWS
 		signUpUser(email,pswd,function(err,result){
-			if (err) {
+			if(err.toString().indexOf('UsernameExistsException')!=-1){
+				hintText.style.display = 'block';
+				hintText.innerHTML = "An account already exists for this email address.";
+			}else if (err) {
+				error=err;
 				hintText.style.display = 'block';
 				hintText.innerHTML = "There was an error.";
 			}else{

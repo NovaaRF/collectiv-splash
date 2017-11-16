@@ -1,5 +1,6 @@
 //support functions for login.html
 var error;
+var debug = JSON.parse(localStorage.getItem('userExtraInfo'));
 function userLogin(){
 	var email = document.getElementById('email').value;
 	var pswd = document.getElementById('password').value;
@@ -9,7 +10,7 @@ function userLogin(){
 		document.getElementById("empty-fields").style.display = 'block';
 	}
 	else{
-		console.log("authenticating against email: "+email+", password: "+pswd);
+		console.log("authenticating user..");
 		authenticateUser(email,pswd,function(err,result){
 			if(err){
 				error = err;
@@ -19,6 +20,25 @@ function userLogin(){
 				}
 				else
 					document.getElementById("invalid").style.display = 'block';
+			}else{
+				//successful login
+				console.log("user authenticated");
+				localStorage.setItem('activeUser',JSON.stringify(cognitoUser));
+				
+				//check for unsubmitted new account info
+				var signupAttributes = JSON.parse(localStorage.getItem('userExtraInfo'));
+				if(signupAttributes){
+					console.log("detected additional user attributes");
+					updateUserProfile(signupAttributes,function(err,result){
+						error = err;
+						if(result){
+							localStorage.removeItem('userExtraInfo');
+							window.location.href = '../dashboard/dashboard.html';
+						}
+					});
+				}else{
+					window.location.href = '../dashboard/dashboard.html';
+				}
 			}
 		});
 	}
