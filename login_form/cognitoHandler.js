@@ -5,7 +5,9 @@ var poolData = {
 	ClientId : '5ffhmh1dnnptnnk089ks8v25mk'
 };
 var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-var cognitoUser = JSON.parse(localStorage.getItem('activeUser'));
+var cognitoUser;
+
+
 
 function buildCognitoUser(email){
 	var userData = {
@@ -88,6 +90,22 @@ function updateUserProfile(attributes,callback){
     });
 }
 
-
+function fetchActiveUser(callback){
+	cognitoUser = userPool.getCurrentUser(); //fetch user from memory
+	
+	if (cognitoUser != null) {
+	console.log("found user");
+        cognitoUser.getSession(function(err, session) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log('session validity: ' + session.isValid());
+			if(callback){
+				callback(session);
+			}
+        });
+    }
+}
 
 

@@ -76,16 +76,25 @@ function submitOtherInfo(){
 		document.getElementById("not-complete-hint").style.display = 'block';
 		console.log("form not complete");
 	}else{
+		var userType = document.getElementById("user-type").value;
+		var referral = document.getElementById("referral").value;
+		if(userType=='other'){
+			userType = "other: "+document.getElementById("user-type-input").value;
+		}
+		if(referral=='other'){
+			referral = "other: "+document.getElementById("referral-input").value;
+		}
+		
 		var attributes = [
 		{
 			Name: 'preferred_username',
 			Value: document.getElementById('username').value
 		},{
 			Name: 'custom:user_category',
-			Value: document.getElementById('user-type').value
+			Value: userType
 		},{
 			Name: 'custom:user_source',
-			Value: document.getElementById('referral').value
+			Value: referral
 		}
 		];
 		
