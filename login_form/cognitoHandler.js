@@ -8,7 +8,6 @@ var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poo
 var cognitoUser;
 
 
-
 function buildCognitoUser(email){
 	var userData = {
         Username : email,
@@ -17,14 +16,13 @@ function buildCognitoUser(email){
 	return new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
 }
 
-function signUpUser(email, pswd, callback){
+function signUpUser(attributes, email, pswd, callback){
 	var attributeList = [];
-	var dataEmail = {
-		Name : 'email',
-		Value : email
-	};
-	var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
-	attributeList.push(attributeEmail);
+	
+	for(var i=0;i<attributes.length;i++){
+		var newAttribute = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attributes[i]);
+		attributeList.push(newAttribute);
+	}
 
 	userPool.signUp(email, pswd, attributeList, null, function(err, result) {
 		if (err) {
@@ -69,7 +67,7 @@ function authenticateUser(email,pswd,callback){
 		});
 }
 
-function updateUserProfile(attributes,callback){
+/*function updateUserProfile(attributes,callback){
 	var attributeList = [];
 	for(var i=0;i<attributes.length;i++){
 		var attribute = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(attributes[i]);
@@ -88,7 +86,7 @@ function updateUserProfile(attributes,callback){
 			}
 		}
     });
-}
+}*/
 
 function fetchActiveUser(callback){
 	cognitoUser = userPool.getCurrentUser(); //fetch user from memory

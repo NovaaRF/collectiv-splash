@@ -23,22 +23,7 @@ function userLogin(){
 			}else{
 				//successful login
 				console.log("user authenticated");
-				localStorage.setItem('activeUser',JSON.stringify(cognitoUser));
-				
-				//check for unsubmitted new account info
-				var signupAttributes = JSON.parse(localStorage.getItem('userExtraInfo'));
-				if(signupAttributes){
-					console.log("detected additional user attributes");
-					updateUserProfile(signupAttributes,function(err,result){
-						error = err;
-						if(result){
-							localStorage.removeItem('userExtraInfo');
-							window.location.href = '../dashboard/dashboard.html';
-						}
-					});
-				}else{
-					window.location.href = '../dashboard/dashboard.html';
-				}
+				window.location.href = '../dashboard/dashboard.html';
 			}
 		});
 	}
